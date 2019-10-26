@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-class LoginPage extends React.Component {
+import { login } from 'services/authService'
+
+class LoginPage extends Component {
     state = {
         email: '',
         password: '',
@@ -18,19 +20,19 @@ class LoginPage extends React.Component {
         // THIS IS MOCK EXAMPLE
         const { email, password } = this.state
 
-        if (email === 'r@w.com' && password === 'rw1234') {
-            const authdata = window.btoa(email + ':' + password)
-            localStorage.setItem('user', JSON.stringify(authdata))
-
-            this.props.history.push('/')
-            return
-        }
-
-        this.setState({ error: 'Invalid email/password' }, () => {
-            setTimeout(() => {
-                this.setState({ error: '' })
-            }, 1500)
-        })
+        login(email, password)
+            .then(isSuccess => {
+                if (isSuccess) {
+                    this.props.history.push('/')
+                }
+            })
+            .catch(() => {
+                this.setState({ error: 'Invalid email/password' }, () => {
+                    setTimeout(() => {
+                        this.setState({ error: '' })
+                    }, 1500)
+                })
+            })
     }
 
     render() {

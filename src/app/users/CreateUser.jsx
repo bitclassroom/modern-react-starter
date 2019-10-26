@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 
-import { Loader } from '../loader/Loader'
+import { BASE_URL } from 'utils/const'
+
+import { Loader } from 'components/loader/Loader'
 
 import { UserForm } from './UserForm'
-import { BASE_URL } from '../../utils/const'
 
 export class CreateUser extends Component {
     constructor(props) {

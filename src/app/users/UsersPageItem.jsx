@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const UsersPageItem = props => {
     const { user } = props
-    const { id, name, email, address } = user
+    const { id, name, hiddenEmail, city } = user
     return (
         <tbody>
             <tr>
@@ -11,8 +11,8 @@ export const UsersPageItem = props => {
                 <td>
                     <Link to={`/users/${id}`}>{name}</Link>
                 </td>
-                <td>{email}</td>
-                <td>{address.city}</td>
+                <td>{hiddenEmail}</td>
+                <td>{city}</td>
             </tr>
         </tbody>
     )

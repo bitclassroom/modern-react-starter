@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import { userService } from 'services/userService'
+
+import { Loader } from 'components/loader/Loader'
+
 import { UsersPageItem } from './UsersPageItem'
-import { Loader } from '../loader/Loader'
 
 import './UsersPage.css'
-import { BASE_URL } from '../../utils/const'
 
 export class UsersPage extends Component {
     constructor(props) {
@@ -15,19 +17,16 @@ export class UsersPage extends Component {
         }
     }
 
-    fetchUsers = () => {
-        fetch(`${BASE_URL}/users`)
-            .then(response => response.json())
-            .then(users => {
-                console.log(users)
-                this.setState({
-                    users
-                })
-            })
+    loadUsers = () => {
+        userService.fetchUsers().then(users => {
+            console.log(users)
+
+            this.setState({ users })
+        })
     }
 
     componentDidMount() {
-        this.fetchUsers()
+        this.loadUsers()
     }
 
     renderUsers = users => {

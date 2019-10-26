@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 
 import { UserForm } from './UserForm'
 
-import { Loader } from '../loader/Loader'
-import { BASE_URL } from '../../utils/const'
+import { BASE_URL } from 'utils/const'
+
+import { Loader } from 'components/loader/Loader'
 
 export class EditUser extends Component {
     constructor(props) {

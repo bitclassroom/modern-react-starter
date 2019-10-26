@@ -3,7 +3,12 @@
         "lib": ["dom", "esnext"],
         "jsx": "react",
         "target": "ES6",
-        "checkJs": true
+        "baseUrl": "src",
+        "paths": {
+            "utils/*": ["./utils/*"],
+            "models/*": ["./models/*"],
+            "services/*": ["./services/*"]
+        }
     },
     "include": ["src/**/*"]
 }

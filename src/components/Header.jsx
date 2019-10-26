@@ -7,8 +7,16 @@ const Header = () => (
             <Link to="/">
                 <span className="brand-logo">Users App</span>
             </Link>
+            <ul className="right hide-on-med-and-down">
+                <li>
+                    <Link to="/">Users</Link>
+                </li>
+                <li>
+                    <Link to="/posts">Posts</Link>
+                </li>
+            </ul>
         </div>
     </nav>
 )
 
-export { Header }
+export default Header

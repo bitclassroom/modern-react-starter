@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import { BASE_URL } from '../../utils/const'
+
+import { BASE_URL } from 'utils/const'
+import * as ui from 'utils/ui'
+
+import { userService } from 'services/userService'
+
+import { Loader } from 'components/loader/Loader'
 
 import { UserDetails } from './UserDetails'
-import { Loader } from '../loader/Loader'
 
 class UserDetailsPage extends Component {
     constructor(props) {
@@ -17,19 +22,18 @@ class UserDetailsPage extends Component {
         this.fetchUser()
     }
 
-    fetchUser = () => {
-        const userId = this.props.match.params.id
+    fetchUser = async () => {
+        try {
+            const userId = this.props.match.params.id
 
-        const userUrl = `${BASE_URL}/users/${userId}`
-
-        fetch(userUrl)
-            .then(response => response.json())
-            .then(user => {
-                this.setState({
-                    user,
-                    isDeleting: false
-                })
+            const user = await userService.fetchSingleUser(userId)
+            this.setState({
+                user,
+                isDeleting: false
             })
+        } catch (error) {
+            ui.showAlert()
+        }
     }
 
     deleteUser = () => {

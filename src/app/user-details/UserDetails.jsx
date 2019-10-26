@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const UserDetails = props => {
     const { user, onDeleteUser } = props
-    const { id, email, name, address } = user
+    const { id, email, name, city, street, zipcode } = user
 
     return (
         <>
@@ -66,7 +66,7 @@ export const UserDetails = props => {
                                     id="city"
                                     type="text"
                                     className="validate"
-                                    value={address.city}
+                                    value={city}
                                 />
                                 <span
                                     className="helper-text"
@@ -81,7 +81,7 @@ export const UserDetails = props => {
                                     id="street"
                                     type="text"
                                     className="validate"
-                                    value={address.street}
+                                    value={street}
                                 />
                                 <span
                                     className="helper-text"
@@ -96,7 +96,7 @@ export const UserDetails = props => {
                                     id="ZIP"
                                     type="text"
                                     className="validate"
-                                    value={address.zipcode}
+                                    value={zipcode}
                                 />
                                 <span
                                     className="helper-text"
