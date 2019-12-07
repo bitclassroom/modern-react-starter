@@ -14,4 +14,9 @@ const isAuthenticated = () => {
     return !!storage.load('user')
 }
 
-export { isAuthenticated, login }
+const logout = (onLogout = () => {}) => {
+    localStorage.clear()
+    onLogout()
+}
+
+export { isAuthenticated, login, logout }

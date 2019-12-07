@@ -1,13 +1,34 @@
 import React from 'react'
+import { Link, useHistory } from 'react-router-dom'
 
-const Footer = () => (
-    <footer className="page-footer indigo">
-        <div className="footer-copyright">
-            <div className="container">
-                © {new Date().getFullYear()} ReactWeek Workshop
+import { isAuthenticated, logout } from 'services/authService'
+
+const Footer = props => {
+    let history = useHistory()
+    return (
+        <footer className="page-footer indigo">
+            <div className="footer-copyright">
+                <div className="container">
+                    © {new Date().getFullYear()} BIT
+                    {isAuthenticated() ? (
+                        <div
+                            className="grey-text text-lighten-4 right"
+                            onClick={() => {
+                                logout(() => {
+                                    history.push('/')
+                                })
+                            }}>
+                            Logout
+                        </div>
+                    ) : (
+                        <Link className="grey-text text-lighten-4 right" to="/login">
+                            Sign In
+                        </Link>
+                    )}
+                </div>
             </div>
-        </div>
-    </footer>
-)
+        </footer>
+    )
+}
 
 export default Footer

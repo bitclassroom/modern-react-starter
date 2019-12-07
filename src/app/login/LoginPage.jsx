@@ -23,7 +23,7 @@ class LoginPage extends Component {
         login(email, password)
             .then(isSuccess => {
                 if (isSuccess) {
-                    this.props.history.push('/')
+                    this.props.history.push('/dashboard')
                 }
             })
             .catch(() => {

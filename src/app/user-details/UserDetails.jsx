@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Subtitle, Title } from 'components/Title'
 
 export const UserDetails = props => {
     const { user, onDeleteUser } = props
@@ -8,25 +9,26 @@ export const UserDetails = props => {
     return (
         <>
             <div className="row">
-                <div className="col s6">
-                    <h5>User details | ID: {id}</h5>
-                </div>
-                <div className="right">
+                <Title>{name}</Title>
+            </div>
+            <div className="card-panel">
+                <div className="row">
+                    <div className="col s6">
+                        <Subtitle>User details</Subtitle>
+                    </div>
                     <div className="col s6">
                         <button
                             onClick={onDeleteUser}
-                            className="btn waves-effect waves-light btn-small red">
+                            className="btn waves-effect waves-light btn-small red right">
                             Delete
                         </button>
                         <Link
                             to={`/users/${id}/edit`}
-                            className="btn waves-effect waves-light btn-small">
+                            className="btn waves-effect waves-light btn-small right">
                             Edit
                         </Link>
                     </div>
                 </div>
-            </div>
-            <div className="card-panel">
                 <div className="row">
                     <form className="col s12">
                         <div className="row">

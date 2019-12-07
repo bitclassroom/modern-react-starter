@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import truncate from 'lodash/truncate'
 
 import PostsContext from './PostsContext'
 
@@ -15,14 +16,22 @@ const PostItem = props => {
         selectPost(post.id)
     }
 
-    const cardStyle = isSelected ? ' red' : ' blue-grey darken-1'
+    const cardStyle = isSelected ? ' red' : ' indigo darken-1'
 
     return (
-        <div className="col s12 m6" onClick={_toggleSelected}>
+        <div className="col s12 m4" onClick={_toggleSelected}>
             <div className={`card${cardStyle}`}>
+                <div class="card-image">
+                    <img src={`https://picsum.photos/id/${post.id}/600/800`} />
+                </div>
                 <div className="card-content white-text">
-                    <span className="card-title">{title}</span>
-                    <p>{desc}</p>
+                    <span className="card-title">{truncate(desc, { length: 35 })}</span>
+                    <p>{truncate(desc, { length: 100 })}</p>
+                </div>
+                <div class="card-action">
+                    <p className="right-align white-text">
+                        Author: Author Name | Comments: 90
+                    </p>
                 </div>
             </div>
         </div>

@@ -8,6 +8,9 @@ import { Loader } from 'components/loader/Loader'
 import { UsersPageItem } from './UsersPageItem'
 
 import './UsersPage.css'
+import SearchBar from 'components/SearchBar'
+import Pagination from 'components/Pagination'
+import { Title } from 'components/Title'
 
 export class UsersPage extends Component {
     constructor(props) {
@@ -45,6 +48,8 @@ export class UsersPage extends Component {
 
         return (
             <>
+                <Title>Users</Title>
+                <SearchBar />
                 <div className="card-panel">
                     <table className="responsive-table">
                         <thead>
@@ -58,6 +63,7 @@ export class UsersPage extends Component {
                         {this.renderUsers(users)}
                     </table>
                 </div>
+                <Pagination />
                 <div className="fixed-action-btn">
                     <Link to="users/create" className="btn-floating btn-large blue">
                         <i className="large material-icons">add</i>

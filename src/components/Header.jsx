@@ -1,22 +1,43 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
-const Header = () => (
-    <nav className="indigo">
-        <div className="nav-wrapper container">
-            <Link to="/">
-                <span className="brand-logo">Users App</span>
-            </Link>
-            <ul className="right hide-on-med-and-down">
-                <li>
-                    <Link to="/">Users</Link>
-                </li>
-                <li>
-                    <Link to="/posts">Posts</Link>
-                </li>
-            </ul>
-        </div>
-    </nav>
-)
+import { isAuthenticated } from 'services/authService'
 
-export default Header
+const NavMenu = () => {
+    return isAuthenticated() ? (
+        <>
+            <li>
+                <Link to="/dashboard">Dashboard</Link>
+            </li>
+            <li>
+                <Link to="/my-posts">My posts</Link>
+            </li>
+        </>
+    ) : (
+        <>
+            <li>
+                <Link to="/">Posts</Link>
+            </li>
+            <li>
+                <Link to="/about">About</Link>
+            </li>
+        </>
+    )
+}
+
+const Header = props => {
+    return (
+        <nav className="indigo">
+            <div className="nav-wrapper container">
+                <Link to="/">
+                    <span className="brand-logo">CRUD </span>
+                </Link>
+                <ul className="right">
+                    <NavMenu />
+                </ul>
+            </div>
+        </nav>
+    )
+}
+
+export default withRouter(Header)
