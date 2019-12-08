@@ -22,7 +22,10 @@ const PostItem = props => {
         <div className="col s12 m4" onClick={_toggleSelected}>
             <div className={`card${cardStyle}`}>
                 <div class="card-image">
-                    <img src={`https://picsum.photos/id/${post.id}/600/800`} />
+                    <img
+                        src={`https://picsum.photos/id/${post.id}/600/800`}
+                        alt="This is alt"
+                    />
                 </div>
                 <div className="card-content white-text">
                     <span className="card-title">{truncate(desc, { length: 35 })}</span>

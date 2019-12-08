@@ -2,7 +2,7 @@ import React from 'react'
 import { Title } from 'components/Title'
 
 const DashboardPage = props => {
-    const { title = 'title', desc = 'desc' } = props
+    // const { title = 'title', desc = 'desc' } = props
     return (
         <div className="row">
             <Title>Dashboard</Title>

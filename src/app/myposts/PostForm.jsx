@@ -13,7 +13,7 @@ const PostForm = ({ isEdit }) => {
                 setPost(post)
             })
         }
-    }, [])
+    }, [isEdit, postId])
 
     return (
         <div class="row">
