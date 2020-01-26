@@ -1,4 +1,7 @@
 import React from 'react'
+import AppContext from 'app/AppContext'
+
+import * as authService from 'services/authService'
 
 class LoginPage extends React.Component {
     state = {
@@ -6,6 +9,8 @@ class LoginPage extends React.Component {
         password: '',
         error: ''
     }
+
+    static contextType = AppContext
 
     _onInputChange = event => {
         event.preventDefault()
@@ -15,22 +20,20 @@ class LoginPage extends React.Component {
     }
 
     _onFormSubmit = () => {
-        // THIS IS MOCK EXAMPLE
         const { email, password } = this.state
 
-        if (email === 'r@w.com' && password === 'rw1234') {
-            const authdata = window.btoa(email + ':' + password)
-            localStorage.setItem('user', JSON.stringify(authdata))
-
-            this.props.history.push('/')
-            return
-        }
-
-        this.setState({ error: 'Invalid email/password' }, () => {
-            setTimeout(() => {
-                this.setState({ error: '' })
-            }, 1500)
-        })
+        authService
+            .login(email, password)
+            .then(user => {
+                this.context.setSession(user)
+            })
+            .catch(errorMsg => {
+                this.setState({ error: errorMsg }, () => {
+                    setTimeout(() => {
+                        this.setState({ error: '' })
+                    }, 2000)
+                })
+            })
     }
 
     render() {

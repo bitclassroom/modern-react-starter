@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import { BASE_URL } from 'utils/const'
+
+import { Loader } from 'components/loader/Loader'
+
 import { UsersPageItem } from './UsersPageItem'
-import { Loader } from '../loader/Loader'
 
 import './UsersPage.css'
-import { BASE_URL } from '../../utils/const'
 
 export class UsersPage extends Component {
     constructor(props) {

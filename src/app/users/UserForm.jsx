@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { emailValid } from '../../utils/helpers'
+
+import { emailValid } from 'utils/helpers'
 
 export class UserForm extends Component {
     constructor(props) {

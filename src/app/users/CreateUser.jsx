@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Loader } from '../loader/Loader'
+import { Loader } from 'components/loader/Loader'
 
 import { UserForm } from './UserForm'
 import { BASE_URL } from '../../utils/const'
