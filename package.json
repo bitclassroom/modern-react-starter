@@ -17,6 +17,7 @@
         "react-hook-form": "^6.12.2",
         "react-router-dom": "^5.2.0",
         "react-scripts": "4.0.1",
+        "react-use": "^15.3.4",
         "yup": "^0.31.1"
     },
     "browserslist": [

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const UsersPageItem = props => {
+export const UsersPageItem = (props) => {
     const { user } = props
     const { id, name, email, address } = user
     return (
@@ -18,4 +18,4 @@ export const UsersPageItem = props => {
     )
 }
 
-export default UsersPageItem
+export default React.memo(UsersPageItem)

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useDeepCompareEffect, useMount, usePromise } from 'react-use'
 import { isAuthenticated, login } from 'services/authService'
 
 import { AuthContext } from './AuthContext'
@@ -9,23 +10,26 @@ function AuthProvider(props) {
     const [authenticated, setAuthenticated] = useState(false)
     const [session, setSession] = useState(null)
 
-    useEffect(() => {
-        setAuthenticated(isAuthenticated())
-        console.log('isAuthenticated()', isAuthenticated())
-    }, [])
+    const mounted = usePromise()
+
+    useMount(async () => {})
+
+    useDeepCompareEffect(() => {}, [session])
 
     const loginFn = (data) => {
         const { email, password } = data
 
-        login(email, password)
-            .then((user) => {
-                setSession(user)
-                setAuthenticated(true)
-                history.push('/')
-            })
-            .catch((error) => {
-                console.log('error', error)
-            })
+        mounted(
+            login(email, password)
+                .then((user) => {
+                    setSession(user)
+                    setAuthenticated(true)
+                    history.push('/')
+                })
+                .catch((error) => {
+                    console.log('error', error)
+                })
+        )
     }
 
     const logout = () => {
