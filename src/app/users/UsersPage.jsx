@@ -2,39 +2,33 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import { UsersPageItem } from './UsersPageItem'
-import { Loader } from '../loader/Loader'
+import { Loader } from 'components/loader/Loader'
 
 import './UsersPage.css'
 import { BASE_URL } from '../../utils/const'
+import UserTable from './UserTable'
 
 export class UsersPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            users: []
+            users: [],
         }
     }
 
     fetchUsers = () => {
         fetch(`${BASE_URL}/users`)
-            .then(response => response.json())
-            .then(users => {
+            .then((response) => response.json())
+            .then((users) => {
                 console.log(users)
                 this.setState({
-                    users
+                    users,
                 })
             })
     }
 
     componentDidMount() {
         this.fetchUsers()
-    }
-
-    renderUsers = users => {
-        const usersList = users.map(user => {
-            return <UsersPageItem user={user} key={user.id} />
-        })
-        return usersList
     }
 
     render() {
@@ -47,17 +41,7 @@ export class UsersPage extends Component {
         return (
             <>
                 <div className="card-panel">
-                    <table className="responsive-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>City</th>
-                            </tr>
-                        </thead>
-                        {this.renderUsers(users)}
-                    </table>
+                    <UserTable users={users} />
                 </div>
                 <div className="fixed-action-btn">
                     <Link to="users/create" className="btn-floating btn-large blue">

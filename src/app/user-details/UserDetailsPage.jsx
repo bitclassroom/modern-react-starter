@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { BASE_URL } from '../../utils/const'
 
 import { UserDetails } from './UserDetails'
-import { Loader } from '../loader/Loader'
+import { Loader } from '../../components/loader/Loader'
 
 class UserDetailsPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
             user: null,
-            error: ''
+            error: '',
         }
     }
 
@@ -23,11 +23,11 @@ class UserDetailsPage extends Component {
         const userUrl = `${BASE_URL}/users/${userId}`
 
         fetch(userUrl)
-            .then(response => response.json())
-            .then(user => {
+            .then((response) => response.json())
+            .then((user) => {
                 this.setState({
                     user,
-                    isDeleting: false
+                    isDeleting: false,
                 })
             })
     }
@@ -39,8 +39,8 @@ class UserDetailsPage extends Component {
 
         this.setState({ isDeleting: true }, () => {
             fetch(deleteUrl, {
-                method: 'DELETE'
-            }).then(_ => {
+                method: 'DELETE',
+            }).then((_) => {
                 this.props.history.push('/')
             })
         })

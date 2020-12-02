@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 
 import { UserForm } from './UserForm'
 
-import { Loader } from '../loader/Loader'
+import { Loader } from 'components/loader/Loader'
 import { BASE_URL } from '../../utils/const'
 
 export class EditUser extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            user: null
+            user: null,
         }
     }
 
@@ -19,19 +19,19 @@ export class EditUser extends Component {
         const userUrl = `${BASE_URL}/users/${userId}`
 
         fetch(userUrl)
-            .then(response => response.json())
-            .then(data => {
+            .then((response) => response.json())
+            .then((data) => {
                 this.setState({
-                    user: data
+                    user: data,
                 })
             })
     }
 
-    updateUser = body => {
+    updateUser = (body) => {
         const id = this.props.match.params.id
 
         this.setState({
-            isUpdating: true
+            isUpdating: true,
         })
 
         const editUserUrl = `${BASE_URL}/users/${id}`
@@ -39,12 +39,12 @@ export class EditUser extends Component {
         fetch(editUserUrl, {
             method: 'PATCH',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify(body),
         })
-            .then(response => response.json())
-            .then(_ => {
+            .then((response) => response.json())
+            .then((_) => {
                 this.props.history.push('/')
             })
     }

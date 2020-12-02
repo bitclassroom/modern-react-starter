@@ -3,7 +3,8 @@
         "lib": ["dom", "esnext"],
         "jsx": "react",
         "target": "ES6",
-        "checkJs": true
+        "baseUrl": "src",
+        "moduleResolution": "node"
     },
     "include": ["src/**/*"]
 }

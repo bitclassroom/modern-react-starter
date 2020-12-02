@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const UserDetails = props => {
+export const UserDetails = (props) => {
     const { user, onDeleteUser } = props
     const { id, email, name, address } = user
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Loader } from '../loader/Loader'
+import { Loader } from 'components/loader/Loader'
 
 import { UserForm } from './UserForm'
 import { BASE_URL } from '../../utils/const'
@@ -11,10 +11,10 @@ export class CreateUser extends Component {
         this.state = {}
     }
 
-    createUser = body => {
+    createUser = (body) => {
         this.setState(
             {
-                isCreating: true
+                isCreating: true,
             },
             () => {
                 const createUserUrl = `${BASE_URL}/users`
@@ -22,11 +22,11 @@ export class CreateUser extends Component {
                 return fetch(createUserUrl, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(body)
+                    body: JSON.stringify(body),
                 })
-                    .then(response => response.json())
+                    .then((response) => response.json())
                     .then(() => {
                         this.props.history.push('/')
                     })
